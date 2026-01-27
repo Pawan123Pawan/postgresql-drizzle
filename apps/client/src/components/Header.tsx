@@ -4,20 +4,15 @@ import { Link, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 export default function Header() {
-  const [session, setSession] = useState<boolean>();
+  const [session, setSession] = useState<boolean>(false);
 
   useEffect(() => {
-    async function useSession() {
+    async function checkSession() {
       const data = await requireAuth();
-      console.log("data coming: ", data);
-      if (data.data) {
-        setSession(true);
-      } else {
-        setSession(false);
-      }
+      setSession(!!data.data);
     }
-    useSession();
-  }, [session]);
+    checkSession();
+  }, []);
 
   const router = useRouter();
 
@@ -41,6 +36,7 @@ export default function Header() {
                   authClient.signOut({
                     fetchOptions: {
                       onSuccess: () => {
+                        setSession(false);
                         router.navigate({ to: "/" });
                       },
                     },
