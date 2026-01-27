@@ -8,6 +8,13 @@
       "when": 1769073099736,
       "tag": "0000_talented_iron_monger",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1769238787368,
+      "tag": "0001_short_korath",
+      "breakpoints": true
     }
   ]
 }
